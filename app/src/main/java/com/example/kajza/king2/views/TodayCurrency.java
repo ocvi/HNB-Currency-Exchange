@@ -1,4 +1,4 @@
-package com.example.kajza.king2.CurrencyView;
+package com.example.kajza.king2.views;
 
 import android.content.Context;
 import android.os.Build;
@@ -11,11 +11,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.kajza.king2.CSV.OpenCSVWriter;
-import com.example.kajza.king2.Currency.CurrencyExchange;
+import com.example.kajza.king2.models.Currency;
 import com.example.kajza.king2.R;
-import com.example.kajza.king2.Retrofit.CurrencyExchangeService;
-import com.example.kajza.king2.Retrofit.ServiceGenerator;
+import com.example.kajza.king2.network.CurrencyExchangeService;
+import com.example.kajza.king2.network.ServiceGenerator;
 import com.opencsv.CSVWriter;
 
 import java.io.BufferedWriter;
@@ -34,10 +33,9 @@ import retrofit2.Response;
 public class TodayCurrency extends AppCompatActivity {
 
     private static final String API_URL = "http://api.hnb.hr/";
-    OpenCSVWriter dohvat;
     Context appContext;
     private ListView lvCurrency;
-    private List<CurrencyExchange> currencyList;
+    private List<Currency> currencyList;
     private Button csv_button;
     private String filename = "SampleFile";
     //private String filepath = "MyFileStorage";
@@ -69,20 +67,20 @@ public class TodayCurrency extends AppCompatActivity {
 
     private void loadTodayExchangeData() {
         CurrencyExchangeService client = ServiceGenerator.createService(CurrencyExchangeService.class, API_URL);
-        Call<List<CurrencyExchange>> currency = client.loadTodayExchangeData();
-        currency.enqueue(new Callback<List<CurrencyExchange>>() {
+        Call<List<Currency>> currency = client.loadTodayExchangeData();
+        currency.enqueue(new Callback<List<Currency>>() {
             @Override
-            public void onResponse(Call<List<CurrencyExchange>> call, Response<List<CurrencyExchange>> response) {
+            public void onResponse(Call<List<Currency>> call, Response<List<Currency>> response) {
                 if (response.isSuccessful()) {
                     currencyList = response.body();
-                    ArrayAdapter adapter = new CurrencyAdapter(getApplicationContext(), R.layout.currency_item, (ArrayList<CurrencyExchange>) currencyList);
+                    ArrayAdapter adapter = new CurrencyAdapter(getApplicationContext(), R.layout.currency_item, (ArrayList<Currency>) currencyList);
                     lvCurrency.setAdapter(adapter);
                     lvCurrency.setTextFilterEnabled(true);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<CurrencyExchange>> call, Throwable t) {
+            public void onFailure(Call<List<Currency>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
@@ -106,9 +104,9 @@ public class TodayCurrency extends AppCompatActivity {
                     "Kupovni tečaj", "Srednji tečaj", "Prodajni tečaj"};
             csvWriter.writeNext(headerRecord);
 
-            Iterator<CurrencyExchange> it = currencyList.iterator();
+            Iterator<Currency> it = currencyList.iterator();
             while (it.hasNext()) {
-                CurrencyExchange emp = it.next();
+                Currency emp = it.next();
                 String[] bodyRecord = {emp.getBroj_tecajnice(), emp.getDatum(), emp.getDrzava(),
                         emp.getSifra_valute(), emp.getValuta(), emp.getJedinica().toString(), emp.getKupovni_tecaj(),
                         emp.getSrednji_tecaj(), emp.getProdajni_tecaj()};
@@ -143,9 +141,9 @@ public class TodayCurrency extends AppCompatActivity {
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(String.valueOf(headerRecord));
 
-            Iterator<CurrencyExchange> it = currencyList.iterator();
+            Iterator<Currency> it = currencyList.iterator();
             while (it.hasNext()) {
-                CurrencyExchange emp = it.next();
+                Currency emp = it.next();
                 String[] bodyRecord = {emp.getBroj_tecajnice(), emp.getDatum(), emp.getDrzava(),
                         emp.getSifra_valute(), emp.getValuta(), emp.getJedinica().toString(), emp.getKupovni_tecaj(),
                         emp.getSrednji_tecaj(), emp.getProdajni_tecaj()};

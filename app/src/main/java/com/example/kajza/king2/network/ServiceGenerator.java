@@ -1,4 +1,4 @@
-package com.example.kajza.king2.Retrofit;
+package com.example.kajza.king2.network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

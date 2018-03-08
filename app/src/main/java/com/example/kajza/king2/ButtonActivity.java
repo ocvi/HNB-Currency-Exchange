@@ -7,15 +7,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.kajza.king2.CurrencyView.DateCurrency;
-import com.example.kajza.king2.CurrencyView.TodayCurrency;
+import com.example.kajza.king2.views.ExchangeActivity;
+import com.example.kajza.king2.views.TodayCurrency;
 
 public class ButtonActivity extends AppCompatActivity {
 
     private EditText etDate;
     private Button b_currency;
     private Button b_todayCurrency;
-    private DateCurrency main;
+    private ExchangeActivity main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class ButtonActivity extends AppCompatActivity {
             public void onClick(View v) {
                 etDate = (EditText) findViewById(R.id.etDate);
                 String date = etDate.getText().toString();
-                Intent tecaj = new Intent(ButtonActivity.this, DateCurrency.class);
+                Intent tecaj = new Intent(ButtonActivity.this, ExchangeActivity.class);
                 tecaj.putExtra("date", date);
                 startActivity(tecaj);
             }

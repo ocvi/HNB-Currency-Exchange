@@ -1,4 +1,4 @@
-package com.example.kajza.king2.CurrencyView;
+package com.example.kajza.king2.views;
 
 
 import android.content.Context;
@@ -8,21 +8,21 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.kajza.king2.Currency.CurrencyExchange;
+import com.example.kajza.king2.models.Currency;
 import com.example.kajza.king2.R;
 
 import java.util.ArrayList;
 
 
-public class CurrencyAdapter extends ArrayAdapter<CurrencyExchange> {
+public class CurrencyAdapter extends ArrayAdapter<Currency> {
 
     int Resource;
     ViewHolder holder;
     private Context context;
     private LayoutInflater layoutInflater;
-    private ArrayList<CurrencyExchange> currencyList;
+    private ArrayList<Currency> currencyList;
 
-    public CurrencyAdapter(Context context, int resource, ArrayList<CurrencyExchange> list) {
+    public CurrencyAdapter(Context context, int resource, ArrayList<Currency> list) {
         super(context, resource, list);
         this.context = context;
         this.currencyList = list;
