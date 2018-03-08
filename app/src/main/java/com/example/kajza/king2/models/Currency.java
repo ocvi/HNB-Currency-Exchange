@@ -1,13 +1,13 @@
-package com.example.kajza.king2.Currency;
+package com.example.kajza.king2.models;
 
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class CurrencyExchange implements Parcelable {
+public class Currency implements Parcelable {
 
 
-    protected CurrencyExchange(Parcel in) {
+    protected Currency(Parcel in) {
         broj_tecajnice = in.readString();
         datum = in.readString();
         drzava = in.readString();
@@ -23,15 +23,15 @@ public class CurrencyExchange implements Parcelable {
         prodajni_tecaj = in.readString();
     }
 
-    public static final Creator<CurrencyExchange> CREATOR = new Creator<CurrencyExchange>() {
+    public static final Creator<Currency> CREATOR = new Creator<Currency>() {
         @Override
-        public CurrencyExchange createFromParcel(Parcel in) {
-            return new CurrencyExchange(in);
+        public Currency createFromParcel(Parcel in) {
+            return new Currency(in);
         }
 
         @Override
-        public CurrencyExchange[] newArray(int size) {
-            return new CurrencyExchange[size];
+        public Currency[] newArray(int size) {
+            return new Currency[size];
         }
     };
 

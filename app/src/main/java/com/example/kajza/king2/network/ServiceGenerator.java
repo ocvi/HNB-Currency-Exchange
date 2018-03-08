@@ -1,4 +1,4 @@
-package com.example.kajza.king2.Retrofit;
+package com.example.kajza.king2.network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -21,9 +21,7 @@ public class ServiceGenerator {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
-        .addConverterFactory(GsonConverterFactory.create(gson)).build();
-
-
+                .addConverterFactory(GsonConverterFactory.create(gson)).build();
 
 
         return retrofit.create(serviceClass);
