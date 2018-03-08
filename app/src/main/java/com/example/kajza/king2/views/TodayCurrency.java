@@ -5,14 +5,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.kajza.king2.models.Currency;
 import com.example.kajza.king2.R;
+import com.example.kajza.king2.models.Currency;
 import com.example.kajza.king2.network.CurrencyExchangeService;
 import com.example.kajza.king2.network.ServiceGenerator;
 import com.opencsv.CSVWriter;
@@ -36,7 +34,7 @@ public class TodayCurrency extends AppCompatActivity {
     Context appContext;
     private ListView lvCurrency;
     private List<Currency> currencyList;
-    private Button csv_button;
+//    private Button csv_button;
     private String filename = "SampleFile";
     //private String filepath = "MyFileStorage";
     //File myExternalFile;
@@ -50,19 +48,19 @@ public class TodayCurrency extends AppCompatActivity {
         loadTodayExchangeData();
         appContext = getApplicationContext();
 
-        csv_button = (Button) findViewById(R.id.csv_button);
-        csv_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                try {
-                    writeCSV();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
+//        csv_button = (Button) findViewById(R.id.csv_button);
+//        csv_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                try {
+//                    writeCSV();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        });
     }
 
     private void loadTodayExchangeData() {
