@@ -2,22 +2,14 @@ package com.example.kajza.king2.CSV;
 
 
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 
-import com.example.kajza.king2.Currency.CurrencyExchange;
 import com.opencsv.CSVWriter;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 public class OpenCSVWriter {
     public static final String TAG = "OpenCSVWriter";

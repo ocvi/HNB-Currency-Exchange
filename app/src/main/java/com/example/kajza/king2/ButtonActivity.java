@@ -1,8 +1,8 @@
 package com.example.kajza.king2;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,8 +21,8 @@ public class ButtonActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_button);
-        b_currency =  (Button) findViewById(R.id.b_currency);
-        b_todayCurrency  = (Button) findViewById(R.id.b_todayCurrency);
+        b_currency = (Button) findViewById(R.id.b_currency);
+        b_todayCurrency = (Button) findViewById(R.id.b_todayCurrency);
 
         b_currency.setOnClickListener(new View.OnClickListener() {
             @Override

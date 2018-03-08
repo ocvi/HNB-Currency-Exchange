@@ -2,10 +2,9 @@ package com.example.kajza.king2.CurrencyView;
 
 import android.content.Context;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,13 +20,9 @@ import com.opencsv.CSVWriter;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -38,13 +33,13 @@ import retrofit2.Response;
 
 public class TodayCurrency extends AppCompatActivity {
 
-    private ListView lvCurrency;
-    private List<CurrencyExchange> currencyList;
     private static final String API_URL = "http://api.hnb.hr/";
-    private Button csv_button;
-    private String filename = "SampleFile";
     OpenCSVWriter dohvat;
     Context appContext;
+    private ListView lvCurrency;
+    private List<CurrencyExchange> currencyList;
+    private Button csv_button;
+    private String filename = "SampleFile";
     //private String filepath = "MyFileStorage";
     //File myExternalFile;
     //private static final String STRING_ARRAY_SAMPLE = "./string-array-sample.csv";
@@ -85,6 +80,7 @@ public class TodayCurrency extends AppCompatActivity {
                     lvCurrency.setTextFilterEnabled(true);
                 }
             }
+
             @Override
             public void onFailure(Call<List<CurrencyExchange>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
@@ -94,7 +90,6 @@ public class TodayCurrency extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void saveCSVfile() {
-
         try (
                 //Writer writer = Files.newBufferedWriter(Paths.get(getStorageDir()));
                 Writer writer = new FileWriter("/mnt/sdcard/myfile.csv");
@@ -124,7 +119,6 @@ public class TodayCurrency extends AppCompatActivity {
             csvWriter.close();
 
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -135,14 +129,12 @@ public class TodayCurrency extends AppCompatActivity {
         //  return "/storage/emulated/0/Android/data/com.iam360.sensorlog/";
     }
 
-
-    private void saveCSVfile2(){
-
+    private void saveCSVfile2() {
         try {
             String[] headerRecord = {"Broj tečajnice", "Datum", "Država", "Šifra valute", "Valuta", "Jedinica",
                     "Kupovni tečaj", "Srednji tečaj", "Prodajni tečaj"};
 
-            File file = new File(filename +".csv");
+            File file = new File(filename + ".csv");
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -154,7 +146,7 @@ public class TodayCurrency extends AppCompatActivity {
             Iterator<CurrencyExchange> it = currencyList.iterator();
             while (it.hasNext()) {
                 CurrencyExchange emp = it.next();
-                String[] bodyRecord = { emp.getBroj_tecajnice(), emp.getDatum(), emp.getDrzava(),
+                String[] bodyRecord = {emp.getBroj_tecajnice(), emp.getDatum(), emp.getDrzava(),
                         emp.getSifra_valute(), emp.getValuta(), emp.getJedinica().toString(), emp.getKupovni_tecaj(),
                         emp.getSrednji_tecaj(), emp.getProdajni_tecaj()};
                 bw.write(String.valueOf(bodyRecord));
@@ -167,29 +159,25 @@ public class TodayCurrency extends AppCompatActivity {
     }
 
 
+    public void writeCSV() throws IOException {
+        File file = new File(getFilesDir().getPath() + "/myfile.csv");
+        // Log( "writeCSV: " + file.getPath());
 
+        Writer writer = new FileWriter(file);
 
-        public void writeCSV() throws IOException {
+        CSVWriter csvWriter = new CSVWriter(writer,
+                CSVWriter.DEFAULT_SEPARATOR,
+                CSVWriter.NO_QUOTE_CHARACTER,
+                CSVWriter.DEFAULT_ESCAPE_CHARACTER,
+                CSVWriter.DEFAULT_LINE_END);
+        String[] headerRecord = {"Name", "Email", "Phone", "Country"};
+        csvWriter.writeNext(headerRecord);
 
-            File file = new File(getFilesDir().getPath() + "/myfile.csv");
-           // Log( "writeCSV: " + file.getPath());
-
-            Writer writer = new FileWriter(file);
-
-            CSVWriter csvWriter = new CSVWriter(writer,
-                    CSVWriter.DEFAULT_SEPARATOR,
-                    CSVWriter.NO_QUOTE_CHARACTER,
-                    CSVWriter.DEFAULT_ESCAPE_CHARACTER,
-                    CSVWriter.DEFAULT_LINE_END);
-            String[] headerRecord = {"Name", "Email", "Phone", "Country"};
-            csvWriter.writeNext(headerRecord);
-
-            csvWriter.writeNext(new String[]{"Sundar Pichai ♥", "sundar.pichai@gmail.com", "+1-1111111111", "India"});
-            csvWriter.writeNext(new String[]{"Satya Nadella", "satya.nadella@outlook.com", "+1-1111111112", "India"});
-            csvWriter.close();
-        }
-
+        csvWriter.writeNext(new String[]{"Sundar Pichai ♥", "sundar.pichai@gmail.com", "+1-1111111111", "India"});
+        csvWriter.writeNext(new String[]{"Satya Nadella", "satya.nadella@outlook.com", "+1-1111111112", "India"});
+        csvWriter.close();
     }
+}
 
 
 

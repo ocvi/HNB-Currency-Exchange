@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:id="@+id/linearLayout"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/linearLayout2"
@@ -25,7 +24,7 @@
             android:textColor="#ffffff"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/tvSellRate"
@@ -38,7 +37,7 @@
             android:textColor="#ffffff"
             android:textSize="30sp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/tvBuyRate"
@@ -53,7 +52,7 @@
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSellRate" />
+            app:layout_constraintTop_toBottomOf="@+id/tvSellRate"/>
 
         <TextView
             android:id="@+id/tvDrzava"
@@ -67,7 +66,7 @@
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvValuta" />
+            app:layout_constraintTop_toBottomOf="@+id/tvValuta"/>
 
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

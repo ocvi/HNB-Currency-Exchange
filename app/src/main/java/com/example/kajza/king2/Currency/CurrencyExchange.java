@@ -7,6 +7,27 @@ import android.os.Parcelable;
 public class CurrencyExchange implements Parcelable {
 
 
+    public static final Creator<CurrencyExchange> CREATOR = new Creator<CurrencyExchange>() {
+        @Override
+        public CurrencyExchange createFromParcel(Parcel in) {
+            return new CurrencyExchange(in);
+        }
+
+        @Override
+        public CurrencyExchange[] newArray(int size) {
+            return new CurrencyExchange[size];
+        }
+    };
+    String broj_tecajnice;
+    String datum;
+    String drzava;
+    String sifra_valute;
+    String valuta;
+    Integer jedinica;
+    String kupovni_tecaj;
+    String srednji_tecaj;
+    String prodajni_tecaj;
+
     protected CurrencyExchange(Parcel in) {
         broj_tecajnice = in.readString();
         datum = in.readString();
@@ -22,18 +43,6 @@ public class CurrencyExchange implements Parcelable {
         srednji_tecaj = in.readString();
         prodajni_tecaj = in.readString();
     }
-
-    public static final Creator<CurrencyExchange> CREATOR = new Creator<CurrencyExchange>() {
-        @Override
-        public CurrencyExchange createFromParcel(Parcel in) {
-            return new CurrencyExchange(in);
-        }
-
-        @Override
-        public CurrencyExchange[] newArray(int size) {
-            return new CurrencyExchange[size];
-        }
-    };
 
     public String getBroj_tecajnice() {
         return broj_tecajnice;
@@ -106,16 +115,6 @@ public class CurrencyExchange implements Parcelable {
     public void setProdajni_tecaj(String prodajni_tecaj) {
         this.prodajni_tecaj = prodajni_tecaj;
     }
-
-    String broj_tecajnice;
-    String datum;
-    String drzava;
-    String sifra_valute;
-    String valuta;
-    Integer jedinica;
-    String kupovni_tecaj;
-    String srednji_tecaj;
-    String prodajni_tecaj;
 
     @Override
     public int describeContents() {

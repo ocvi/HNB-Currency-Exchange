@@ -21,9 +21,7 @@ public class ServiceGenerator {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
-        .addConverterFactory(GsonConverterFactory.create(gson)).build();
-
-
+                .addConverterFactory(GsonConverterFactory.create(gson)).build();
 
 
         return retrofit.create(serviceClass);
